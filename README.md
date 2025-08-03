@@ -40,7 +40,7 @@ sudo pacman -S ffmpeg
 
 1. **Clone ou baixe o projeto**
 ```bash
-git clone <repo_url>
+git clone https://github.com/leo-statai/transcritor.git
 cd transcritor
 ```
 
