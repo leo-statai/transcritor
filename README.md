@@ -1,24 +1,24 @@
-# Sistema de Transcrição de Áudio
+# Audio Transcription System
 
-Sistema minimalista para transcrever arquivos de áudio e vídeo para texto usando OpenAI Whisper.
+Minimalist tool to transcribe audio and video files to text using OpenAI Whisper.
 
-## 🚀 Funcionalidades
+## 🚀 Features
 
-- ✅ Suporte a múltiplos formatos de vídeo (MP4, AVI, MKV, MOV, FLV, WMV)
-- ✅ Suporte a múltiplos formatos de áudio (MP3, WAV, FLAC, AAC, OGG, M4A)
-- ✅ Extração automática de áudio de vídeos
-- ✅ Transcrição com timestamps opcionais
-- ✅ Múltiplos tamanhos de modelo Whisper (tiny, base, small, medium, large)
-- ✅ Detecção automática de idioma
-- ✅ Interface de linha de comando simples
-- ✅ Tratamento robusto de erros
+- ✅ Multiple video formats (MP4, AVI, MKV, MOV, FLV, WMV)
+- ✅ Multiple audio formats (MP3, WAV, FLAC, AAC, OGG, M4A)
+- ✅ Automatic audio extraction from video
+- ✅ Optional timestamps
+- ✅ All Whisper model sizes (tiny, base, small, medium, large)
+- ✅ Automatic language detection
+- ✅ Simple command-line interface
+- ✅ Robust error handling
 
-## 📋 Pré-requisitos
+## 📋 Prerequisites
 
-- Python 3.8+ (testado com Python 3.13)
-- FFmpeg instalado no sistema
+- Python 3.8+ (tested with Python 3.13)
+- FFmpeg installed on the system
 
-### Instalando FFmpeg
+### Installing FFmpeg
 
 **Ubuntu/Debian:**
 ```bash
@@ -36,170 +36,170 @@ brew install ffmpeg
 sudo pacman -S ffmpeg
 ```
 
-## 🛠️ Instalação
+## 🛠️ Installation
 
-1. **Clone ou baixe o projeto**
+1. **Clone or download the project**
 ```bash
 git clone https://github.com/leo-statai/transcritor.git
 cd transcritor
 ```
 
-2. **Crie um ambiente virtual**
+2. **Create a virtual environment**
 ```bash
 python3 -m venv venv
 source venv/bin/activate  # Linux/macOS
-# ou
+# or
 venv\Scripts\activate     # Windows
 ```
 
-3. **Instale as dependências**
+3. **Install dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-## 🎯 Como usar
+## 🎯 Usage
 
-### Uso básico
+### Basic usage
 
 ```bash
-# Ativar ambiente virtual
+# Activate the virtual environment
 source venv/bin/activate
 
-# Transcrever um arquivo de vídeo
+# Transcribe a video file
 python transcriber.py video.mp4
 
-# Transcrever um arquivo de áudio
+# Transcribe an audio file
 python transcriber.py audio.mp3
 ```
 
-### Opções avançadas
+### Advanced options
 
 ```bash
-# Especificar arquivo de saída
-python transcriber.py video.mp4 -o minha_transcricao.txt
+# Custom output file
+python transcriber.py video.mp4 -o my_transcript.txt
 
-# Usar modelo maior (melhor qualidade)
+# Use a larger model (better quality)
 python transcriber.py audio.wav --model large
 
-# Especificar idioma
+# Force a specific language
 python transcriber.py video.mp4 --language pt
 
-# Transcrição sem timestamps
+# Transcription without timestamps
 python transcriber.py audio.mp3 --no-timestamps
 
-# Combinar opções
-python transcriber.py video.mp4 --model medium --language pt -o resultado.txt
+# Combine options
+python transcriber.py video.mp4 --model medium --language pt -o result.txt
 ```
 
-### Opções disponíveis
+### Available options
 
-- `--model`: Tamanho do modelo Whisper
-  - `tiny`: Mais rápido, menor qualidade (~39M parâmetros)
-  - `base`: Balanceado (padrão) (~74M parâmetros)
-  - `small`: Boa qualidade (~244M parâmetros)
-  - `medium`: Alta qualidade (~769M parâmetros)
-  - `large`: Máxima qualidade (~1550M parâmetros)
+- `--model`: Whisper model size
+  - `tiny`: Fastest, lowest quality (~39M parameters)
+  - `base`: Balanced (default) (~74M parameters)
+  - `small`: Good quality (~244M parameters)
+  - `medium`: High quality (~769M parameters)
+  - `large`: Best quality (~1550M parameters)
 
-- `--language`: Código do idioma (ex: `pt`, `en`, `es`, `fr`)
-- `--no-timestamps`: Remove timestamps da transcrição
-- `-o, --output`: Especifica arquivo de saída
+- `--language`: Language code (e.g. `pt`, `en`, `es`, `fr`)
+- `--no-timestamps`: Strip timestamps from the transcript
+- `-o, --output`: Output file path
 
-## 📊 Formatos suportados
+## 📊 Supported formats
 
-### Vídeo
+### Video
 - MP4, AVI, MKV, MOV, FLV, WMV
 
-### Áudio
+### Audio
 - MP3, WAV, FLAC, AAC, OGG, M4A
 
-## 📄 Formato de saída
+## 📄 Output format
 
-A transcrição é salva em formato TXT com a seguinte estrutura:
+The transcript is saved as a TXT file with the following structure:
 
 ```
-# Transcrição de Áudio
-# Modelo: base
-# Idioma: pt
-# Duração: [00:05:30]
+# Audio Transcription
+# Model: base
+# Language: pt
+# Duration: [00:05:30]
 #
 
-[00:00:00] Olá, bem-vindos ao nosso podcast.
-[00:00:05] Hoje vamos falar sobre tecnologia.
-[00:00:10] O tema é bastante interessante...
+[00:00:00] Hello, welcome to our podcast.
+[00:00:05] Today we're going to talk about technology.
+[00:00:10] It's a really interesting topic...
 ```
 
-## 🧪 Executar testes
+## 🧪 Running tests
 
 ```bash
-# Ativar ambiente virtual
+# Activate the virtual environment
 source venv/bin/activate
 
-# Executar testes
+# Run tests
 python -m unittest tests.test_transcriber -v
 ```
 
-## ⚡ Dicas de performance
+## ⚡ Performance tips
 
-1. **Tamanho do modelo**: Use `tiny` ou `base` para testes rápidos, `medium` ou `large` para qualidade máxima
-2. **Arquivos grandes**: O sistema processa automaticamente em chunks para otimizar memória
-3. **Qualidade de áudio**: Áudio limpo e claro resulta em melhor transcrição
-4. **Idioma**: Especificar o idioma melhora a precisão
+1. **Model size**: Use `tiny` or `base` for quick tests, `medium` or `large` for maximum quality
+2. **Large files**: The system processes audio in chunks automatically to optimize memory
+3. **Audio quality**: Clean, clear audio produces better transcripts
+4. **Language**: Specifying the language improves accuracy
 
-## ❗ Solução de problemas
+## ❗ Troubleshooting
 
-### Erro: FFmpeg não encontrado
+### Error: FFmpeg not found
 ```bash
-# Instale o FFmpeg conforme instruções acima
-which ffmpeg  # Verificar se está instalado
+# Install FFmpeg per the instructions above
+which ffmpeg  # Check if installed
 ```
 
-### Erro: Memória insuficiente
-- Use um modelo menor (`tiny` ou `base`)
-- Processe arquivos menores
-- Feche outros programas
+### Error: Out of memory
+- Use a smaller model (`tiny` or `base`)
+- Process smaller files
+- Close other programs
 
-### Erro: Formato não suportado
-- Verifique se o arquivo está nos formatos suportados
-- Converta o arquivo usando FFmpeg se necessário
+### Error: Unsupported format
+- Confirm the file is in a supported format
+- Convert with FFmpeg if needed
 
-### Erro: Arquivo não encontrado
-- Verifique o caminho do arquivo
-- Use caminhos absolutos se necessário
+### Error: File not found
+- Check the file path
+- Use absolute paths if needed
 
-## 📁 Estrutura do projeto
+## 📁 Project structure
 
 ```
 transcritor/
 ├── src/
 │   ├── __init__.py
-│   ├── main.py              # Interface CLI
-│   ├── audio_extractor.py   # Extração de áudio
-│   ├── transcriber.py       # Motor de transcrição
-│   └── utils.py             # Funções auxiliares
+│   ├── main.py              # CLI interface
+│   ├── audio_extractor.py   # Audio extraction
+│   ├── transcriber.py       # Transcription engine
+│   └── utils.py             # Helper functions
 ├── tests/
 │   ├── __init__.py
-│   └── test_transcriber.py  # Testes unitários
-├── venv/                    # Ambiente virtual
-├── transcriber.py           # Script principal
-├── requirements.txt         # Dependências
-├── setup.py                # Configuração do pacote
-├── .gitignore              # Arquivos ignorados
-└── README.md               # Este arquivo
+│   └── test_transcriber.py  # Unit tests
+├── venv/                    # Virtual environment
+├── transcriber.py           # Main entry point
+├── requirements.txt         # Dependencies
+├── setup.py                 # Package config
+├── .gitignore               # Ignored files
+└── README.md                # This file
 ```
 
-## 🤝 Contribuição
+## 🤝 Contributing
 
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-funcionalidade`)
-3. Commit suas mudanças (`git commit -am 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
+1. Fork the project
+2. Create a branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
-## 📝 Licença
+## 📝 License
 
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+This project is released under the MIT License. See the `LICENSE` file for details.
 
-## 🙏 Agradecimentos
+## 🙏 Acknowledgements
 
-- [OpenAI Whisper](https://github.com/openai/whisper) - Motor de transcrição
-- [FFmpeg](https://ffmpeg.org/) - Processamento de áudio/vídeo
+- [OpenAI Whisper](https://github.com/openai/whisper) — transcription engine
+- [FFmpeg](https://ffmpeg.org/) — audio/video processing
